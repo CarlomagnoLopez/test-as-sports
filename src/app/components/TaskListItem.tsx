@@ -37,10 +37,8 @@ export default function TaskListItem(item: { id: any; taskName: any; typeTask: a
 
                     </div>
                 </div>
-                <div className="ml-auto grid place-items-center justify-self-end">
+                <div className="ml-auto place-items-center justify-self-end">
                     <button
-                        // onClick={() => deleteTask(id)}
-                        // onClick={showDrawing}
                         onClick={() => showDrawing(id)}
                         className="rounded-md border border-transparent p-2.5 text-center text-sm transition-all text-slate-600 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
