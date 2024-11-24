@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useTaskStore from "../context/TaskStore";
 
-export default function TaskListItem(item: any) {
+export default function TaskListItem(item: { id: any; taskName: any; typeTask: any; progressTask: any; }) {
     const deleteTask = useTaskStore((state) => state.deleteTask);
 
     const { id, taskName,typeTask ,progressTask} = item;
