@@ -6,12 +6,12 @@ import { create } from "zustand";
 
 const TaskStore = (set: any, get: any) => ({
     tasks: [
-        // {
-        //     id: Date.now(),
-        //     taskName: 'Sample Task Name.',
-        //     typeTask: 'Natacion',
-        //     progressTask: 'on',
-        // },
+        {
+            id: Date.now(),
+            taskName: 'Sample Task Name.',
+            typeTask: 'Natacion',
+            progressTask: 'on',
+        }
     ],
     alertSuccess: false,
     alertNotSuccess: false,
@@ -109,26 +109,35 @@ const TaskStore = (set: any, get: any) => ({
     },
     editTaskProgress: (id: string) => {
         // get().changeStateLoading()
+        // debugger
+
         const tasks = get().tasks;
         const updatedTasks = tasks?.map((task: {
             progressTask: string; id: string;
         }) => {
-            if (task.id === id && task.progressTask === "Done") {
-                get().changeAlertNotSuccess()
-                return {
-                    ...task,
-                    progressTask: "notdone",
-                };
-            } else {
+            if (task.id === id && task.progressTask !== 'Done') {
                 get().changeAlertSuccess()
                 return {
                     ...task,
                     progressTask: "Done",
                 };
+            } 
+
+            if (task.id === id && task.progressTask === 'Done') {
+                get().changeAlertNotSuccess()
+                return {
+                    ...task,
+                    progressTask: "notdone",
+                };
             }
+            // get().changeAlertSuccess()
+            return {
+                ...task
+            };
+
         }
         )
-
+        console.log(updatedTasks)
         set(() => ({
             tasks: updatedTasks
         }));

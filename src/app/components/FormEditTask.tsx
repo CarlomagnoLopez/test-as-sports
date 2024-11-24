@@ -1,17 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { FormEvent, useState } from "react";
 import useTaskStore from "../context/TaskStore";
-import SkeletonProgress from "../components/SkeletonProgress";
 
 export default function FormEditTask() {
 
 
     const currentTask = useTaskStore((state) => state.currentTask)
     const editTask = useTaskStore((state) => state.editTask)
-    const { taskName, typeTask }: any = currentTask;
+    const { taskName, typeTask }:any = currentTask;
     const [valueType, setValueType] = useState(typeTask);
     const [valueName, setValueName] = useState(taskName);
-    // const closeDrawing = useTaskStore((state) => state.closeDrawing)
-
+    const closeDrawing = useTaskStore((state) => state.closeDrawing)
 
     const handleSubmitButton = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -87,13 +87,21 @@ export default function FormEditTask() {
 
                 </div>
 
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-6 flex items-center justify-end gap-x-2">
+                    <button
+                        // type="submit"
+                        onClick={closeDrawing}
+                        className="rounded-md  px-3 py-2 text-sm font-semibold text shadow-sm text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 group-invalid:pointer-events-none group-invalid:opacity-30"
+                    >
+                        No editar
+                    </button>
                     <button
                         type="submit"
                         className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 group-invalid:pointer-events-none group-invalid:opacity-30"
                     >
                         Editar
                     </button>
+
                 </div>
             </form>
         </div>

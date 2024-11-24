@@ -7,12 +7,9 @@ import useTaskStore from "../context/TaskStore";
 import FormEditTask from '../components/FormEditTask'
 
 export default function DrawerEditTask() {
-    //   const [open, setOpen] = useState(true)
     const openDrawer = useTaskStore((state) => state.openDrawer)
     const closeDrawing = useTaskStore((state) => state.closeDrawing)
-    // const currentTask = useTaskStore((state) => state.currentTask)
 
-    // console.log(currentTask)
     return (
         <Dialog open={openDrawer}
             onClose={closeDrawing}
@@ -44,14 +41,10 @@ export default function DrawerEditTask() {
                             </TransitionChild>
                             <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
 
-                                <div className="relative mt-6 flex-1 px-4 sm:px-6">
-
-                                    {/* Your content */}
+                                <div className="relative mt-6 flex-1 px-4 sm:px-6 py-12">
                                     {openDrawer &&
                                         <FormEditTask></FormEditTask>
-
                                     }
-
                                 </div>
                             </div>
                         </DialogPanel>
