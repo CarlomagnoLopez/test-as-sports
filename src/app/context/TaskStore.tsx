@@ -6,12 +6,12 @@ import { create } from "zustand";
 
 const TaskStore = (set: any, get: any) => ({
     tasks: [
-        {
-            id: Date.now(),
-            taskName: 'Sample Task Name.',
-            typeTask: 'Natacion',
-            progressTask: 'on',
-        }
+        // {
+        //     id: Date.now(),
+        //     taskName: 'Sample Task Name.',
+        //     typeTask: 'Natacion',
+        //     progressTask: 'on',
+        // }
     ],
     alertSuccess: false,
     alertNotSuccess: false,
