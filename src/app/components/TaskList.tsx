@@ -36,7 +36,7 @@ export default function TaskList() {
                         <h2 className="text-left text-lg/7 font-semibold text-indigo-600">Lista de retos deportivos</h2>
                         <p className="mt-1 text-base/7 text-gray-600 font-semibold">Aqui se forja el espiritu de los campeones</p>
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1">
-                            {taskList && taskList.map((item, index) => (
+                            {taskList && taskList.map((item: { id: string; taskName: string; typeTask: string; progressTask: string }, index) => (
                                 <TaskListItem
                                     key={index}
                                     id={item.id}
