@@ -21,7 +21,7 @@ export default function FormCreateTask() {
 
                     <div className="space-y-6">
 
-                        <div className="border-b border-gray-900/10 pb-8">
+                        <div className="border-b border-indigo-600/50 pb-8">
                             <h2 className="text-left text-lg/7 font-semibold text-indigo-600">Crear reto</h2>
                             <p className="mt-1 text-base/7 text-gray-600 font-semibold">Crear un reto deportivo para cumplir en 2025</p>
 
@@ -68,7 +68,7 @@ export default function FormCreateTask() {
                             </div>
                         </div>
 
-                        <div className="border-b border-gray-900/10 pb-8">
+                        <div className="border-b border-indigo-600/50 pb-8">
                             <div className="mt-2 space-y-2">
                                 <fieldset>
                                     <div className="mt-6 space-y-6">

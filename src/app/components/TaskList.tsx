@@ -1,4 +1,3 @@
-
 import React from 'react';
 import TaskListItem from '../components/TaskListItem'
 import useTaskStore from "../context/TaskStore";
@@ -6,17 +5,16 @@ import SkeletonProgress from './SkeletonProgress';
 
 export default function TaskList() {
     const taskList = useTaskStore((state) => state.tasks);
-    const tasks = useTaskStore((state) => state.tasks)
+    // const tasks = useTaskStore((state) => state.tasks)
     const loading = useTaskStore((state) => state.loading)
-    const empyTask = tasks.length == 0 ? true : false;
+    const empyTask = taskList.length == 0 ? true : false;
 
-    console.log(empyTask)
 
     return (
         <div >
             {loading ? <SkeletonProgress></SkeletonProgress> :
                 <div className="space-y-12">
-                    <div className="border-b border-gray-900/10 pb-12">
+                    <div className="pb-12">
                         <h2 className="text-left text-lg/7 font-semibold text-indigo-600">Lista de retos deportivos</h2>
                         <p className="mt-1 text-base/7 text-gray-600 font-semibold">Aqui se forja el espiritu de los campeones</p>
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-1">
