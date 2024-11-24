@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client"
 
 import { create } from "zustand";
 
-const TaskStore = (set, get) => ({
+const TaskStore = (set:any, get:any) => ({
     tasks: [
         // {
         //     id: Date.now(),
@@ -29,7 +31,7 @@ const TaskStore = (set, get) => ({
         // console.log(id)
         get().changeStateLoading()
 
-        set((state) => (
+        set((state: { tasks: any; }) => (
             { 
                 tasks: state.tasks.filter((task: { id: string; }) => task.id !== id)
 
@@ -41,9 +43,6 @@ const TaskStore = (set, get) => ({
             tasks: [...state.tasks, { id: Date.now(), ...objectTest }],
         }))
 
-        // set((state: { tasks: never }) => ({
-        //     tasks: [...state.tasks, { ...objectTest }],
-        // }));
     },
     reset: () => {
         set({
