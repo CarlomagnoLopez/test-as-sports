@@ -3,6 +3,7 @@ import FormCreateTask from '../app/components/FormCreateTask'
 import NavBar from '../app/components/NavBar'
 import PopOverDialog from '../app/components/PopOverDialog'
 import TaskList from '../app/components/TaskList'
+import DrawerEditTask from '../app/components/DrawerEditTask'
 
 export default function Home() {
 
@@ -10,6 +11,10 @@ export default function Home() {
     <>
       <NavBar>
       </NavBar>
+      <DrawerEditTask>
+        
+      </DrawerEditTask>
+      
       <PopOverDialog></PopOverDialog>
       <div className="bg-gray-50 py-16 sm:py-16">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">

@@ -9,14 +9,52 @@ const TaskStore = (set: any, get: any) => ({
         // {
         //     id: Date.now(),
         //     taskName: 'Sample Task Name.',
-        //     typeTask: 'Sample type Task',
+        //     typeTask: 'Natacion',
         //     progressTask: 'on',
         // },
     ],
-    currentTask:{},
+    alertSuccess: false,
+    alertNotSuccess: false,
+    currentTask: {},
     loading: false,
     openDialog: false,
-   
+    openDrawer: false,
+    showDrawing: (id: string) => {
+        const openDrawer = !get().openDrawer;
+        set((state: { tasks: any; }) => ({
+            openDrawer: openDrawer,
+            currentTask: state.tasks.filter((task: { id: string; }) => task.id === id)[0]
+
+        }));
+    },
+    closeDrawing: () => {
+        const openDrawer = !get().openDrawer;
+        set(() => ({
+            openDrawer: openDrawer
+        }));
+    },
+    changeAlertSuccess: () => {
+        const alertSuccess = !get().alertSuccess;
+        set({
+            alertSuccess: alertSuccess
+        });
+        setTimeout(() => {
+            set(() => ({
+                alertSuccess: false,
+            }));
+        }, 2000);
+    },
+    changeAlertNotSuccess: () => {
+        const alertNotSuccess = !get().alertNotSuccess;
+        set({
+            alertNotSuccess: alertNotSuccess
+        });
+        setTimeout(() => {
+            set(() => ({
+                alertNotSuccess: false,
+            }));
+        }, 2000);
+    },
     changeStateLoading: () => {
         const loading = !get().loading;
         set(() => ({
@@ -45,18 +83,44 @@ const TaskStore = (set: any, get: any) => ({
             })
         )
     },
+    editTask: (editedTask: object) => {
+        const { id }: any = editedTask;
+        const tasks = get().tasks;
+        const updatedTasks = tasks?.map((task: { id: string; }) => {
+            if (task.id === id) {
+                return {
+                    ...editedTask
+                };
+            }
+
+            return {
+                ...task
+            };
+        }
+        )
+        // console.log(updatedTasks)
+
+        set(() => ({
+            tasks: updatedTasks
+        }));
+
+        get().closeDrawing();
+
+    },
     editTaskProgress: (id: string) => {
-        get().changeStateLoading()
+        // get().changeStateLoading()
         const tasks = get().tasks;
         const updatedTasks = tasks?.map((task: {
             progressTask: string; id: string;
         }) => {
             if (task.id === id && task.progressTask === "Done") {
+                get().changeAlertNotSuccess()
                 return {
                     ...task,
                     progressTask: "notdone",
                 };
             } else {
+                get().changeAlertSuccess()
                 return {
                     ...task,
                     progressTask: "Done",
@@ -65,17 +129,9 @@ const TaskStore = (set: any, get: any) => ({
         }
         )
 
-        set((state: any) => ({
+        set(() => ({
             tasks: updatedTasks
         }));
-
-        // console.log(test)
-
-        // test.taskName = "changed"
-
-        // set((state: { tasks: never }) => ({
-        //     tasks: [...state.tasks, { ...test }],
-        // }))
     },
     addTask: (task: object) => {
         console.log(task)
@@ -86,8 +142,8 @@ const TaskStore = (set: any, get: any) => ({
     },
 
     addCurrentTask: (currentTask: object) => {
-        set((state: { currentTask: any }) => ({
-            currentTask: {  ...currentTask }
+        set(() => ({
+            currentTask: { ...currentTask }
         }))
 
     },

@@ -5,13 +5,31 @@ import SkeletonProgress from './SkeletonProgress';
 
 export default function TaskList() {
     const taskList = useTaskStore((state) => state.tasks);
-    // const tasks = useTaskStore((state) => state.tasks)
     const loading = useTaskStore((state) => state.loading)
     const empyTask = taskList.length == 0 ? true : false;
+    const alertSuccess = useTaskStore((state) => state.alertSuccess)
+    const alertNotSuccess = useTaskStore((state) => state.alertNotSuccess)
 
-    console.log(taskList)
     return (
         <div >
+            {alertSuccess &&
+                <div className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <p className="font-medium">Bien hecho!</p>
+                    <p className="font-medium">
+                        Cada vez eres mas intenso.
+                    </p>
+                </div>
+            }
+
+            {alertNotSuccess &&
+                <div className="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-yellow-800 dark:text-green-400" role="alert">
+                    <p className="font-medium">Continua!</p>
+                    <p className="font-medium">
+                        Un reto empiza en con la idea.
+                    </p>
+                </div>
+            }
+
             {loading ? <SkeletonProgress></SkeletonProgress> :
                 <div className="space-y-12">
                     <div className="pb-12">
