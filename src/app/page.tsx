@@ -1,6 +1,7 @@
 "use client"
 import FormCreateTask from '../app/components/FormCreateTask'
 import NavBar from '../app/components/NavBar'
+import PopOverDialog from '../app/components/PopOverDialog'
 import TaskList from '../app/components/TaskList'
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     <>
       <NavBar>
       </NavBar>
+      <PopOverDialog></PopOverDialog>
       <div className="bg-gray-50 py-16 sm:py-16">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-2 lg:grid-rows-2">

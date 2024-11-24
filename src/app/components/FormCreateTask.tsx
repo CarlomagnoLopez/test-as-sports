@@ -3,14 +3,17 @@ import useTaskStore from "../context/TaskStore";
 import SkeletonProgress from "../components/SkeletonProgress";
 
 export default function FormCreateTask() {
-    const changeStateLoading = useTaskStore((state) => state.changeStateLoading)
-    const addTask = useTaskStore((state) => state.addTask)
+
     const loading = useTaskStore((state) => state.loading)
+    const changeStatePopOver = useTaskStore((state) => state.changeStatePopOver)
+    const addCurrentTask = useTaskStore((state) => state.addCurrentTask)
+    
+
     const handleSubmitButton = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        changeStateLoading()
         const formData = Object.fromEntries(new FormData(event.currentTarget))
-        addTask(formData)
+        addCurrentTask(formData);
+        changeStatePopOver()
     }
     return (
         <div >

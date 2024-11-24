@@ -9,7 +9,7 @@ export default function TaskList() {
     const loading = useTaskStore((state) => state.loading)
     const empyTask = taskList.length == 0 ? true : false;
 
-
+    console.log(taskList)
     return (
         <div >
             {loading ? <SkeletonProgress></SkeletonProgress> :

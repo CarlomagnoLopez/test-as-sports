@@ -13,7 +13,10 @@ const TaskStore = (set: any, get: any) => ({
         //     progressTask: 'on',
         // },
     ],
+    currentTask:{},
     loading: false,
+    openDialog: false,
+   
     changeStateLoading: () => {
         const loading = !get().loading;
         set(() => ({
@@ -26,6 +29,12 @@ const TaskStore = (set: any, get: any) => ({
         }, 300);
 
     },
+    changeStatePopOver: () => {
+        const openDialog = !get().openDialog;
+        set(() => ({
+            openDialog: openDialog,
+        }));
+    },
     deleteTask: (id: string) => {
         get().changeStateLoading()
 
@@ -36,24 +45,6 @@ const TaskStore = (set: any, get: any) => ({
             })
         )
     },
-    // issueBook: (id) => {
-    //     const books = get().books;
-    //     const updatedBooks = books?.map((book) => {
-    //         if (book.id === id) {
-    //             return {
-    //                 ...book,
-    //                 status: "issued",
-    //             };
-    //         } else {
-    //             return book;
-    //         }
-    //     });
-    //     set((state) => ({
-    //         books: updatedBooks,
-    //         noOfAvailable: state.noOfAvailable - 1,
-    //         noOfIssued: state.noOfIssued + 1,
-    //     }));
-    // },
     editTaskProgress: (id: string) => {
         get().changeStateLoading()
         const tasks = get().tasks;
@@ -86,9 +77,17 @@ const TaskStore = (set: any, get: any) => ({
         //     tasks: [...state.tasks, { ...test }],
         // }))
     },
-    addTask: (objectTest: object) => {
+    addTask: (task: object) => {
+        console.log(task)
         set((state: { tasks: any }) => ({
-            tasks: [...state.tasks, { id: Date.now(), ...objectTest }],
+            tasks: [...state.tasks, { id: Date.now(), ...task }],
+        }))
+
+    },
+
+    addCurrentTask: (currentTask: object) => {
+        set((state: { currentTask: any }) => ({
+            currentTask: {  ...currentTask }
         }))
 
     },
